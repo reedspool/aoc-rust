@@ -16,6 +16,16 @@ mod tests {
     fn test_part_1() {
         let input = read_input("aoc_2019_5_1_input");
         let result = part_1(&input);
+        println!("{:?}", result);
         assert_eq!(result[0], 0);
+        assert_eq!(result[1], 0);
+        assert_eq!(result[2], 0);
+        assert_eq!(result[3], 0);
+        assert_eq!(result[4], 0);
+        assert_eq!(result[5], 0);
+        assert_eq!(result[6], 0);
+        assert_eq!(result[7], 0);
+        assert_eq!(result[8], 0);
+        assert_eq!(result[9], 16574641);
     }
 }

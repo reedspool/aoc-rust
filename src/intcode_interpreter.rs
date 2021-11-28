@@ -69,6 +69,7 @@ impl Program {
     }
 
     pub fn push_output(&mut self, output: i32) {
+        println!("Outputting {} at position {}", output, self.instruction_pointer);
         self.output.push(output);
     }
 

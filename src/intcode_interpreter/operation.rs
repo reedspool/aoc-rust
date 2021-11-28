@@ -52,7 +52,7 @@ impl Operation {
                 let (output, left, right) = Operation::get_stuff_for_basic_binary_op(
                     &program.memory,
                     &program.instruction_pointer,
-                    &self.param_modes
+                    &self.param_modes,
                 );
 
                 program.memory[output] = left + right;
@@ -61,7 +61,7 @@ impl Operation {
                 let (output, left, right) = Operation::get_stuff_for_basic_binary_op(
                     &program.memory,
                     &program.instruction_pointer,
-                    &self.param_modes
+                    &self.param_modes,
                 );
 
                 program.memory[output] = left * right;
@@ -70,17 +70,21 @@ impl Operation {
                 let (output_location) = Operation::get_stuff_for_basic_unary_op(
                     &program.memory,
                     &program.instruction_pointer,
+                    &self.param_modes,
                 );
 
-                program.memory[output_location] = program.input;
+                let output_location = program.memory[program.instruction_pointer + 1 as usize];
+
+                program.memory[output_location as usize] = program.input;
             }
             OpCode::WriteOutput => {
-                let (output_location) = Operation::get_stuff_for_basic_unary_op(
+                let (output) = Operation::get_stuff_for_basic_unary_op(
                     &program.memory,
                     &program.instruction_pointer,
+                    &self.param_modes,
                 );
 
-                program.push_output(program.memory[output_location]);
+                program.push_output(output);
             }
             OpCode::Halt => program.halt(),
         }
@@ -99,23 +103,38 @@ impl Operation {
     pub fn get_stuff_for_basic_binary_op(
         memory: &ProgramMemory,
         pointer: &usize,
-        param_modes: &ParamModes
+        param_modes: &ParamModes,
     ) -> (usize, i32, i32) {
         let left_operand_value = memory[pointer + 1];
         let right_operand_value = memory[pointer + 2];
-        let left_location = memory[left_operand_value as usize];
-        let right_location = memory[right_operand_value as usize];
         let output_location = memory[pointer + 3] as usize;
 
-        let left = if param_modes[0] == 0 { left_location } else { left_operand_value };
-        let right = if param_modes[1] == 0 { right_location } else { right_operand_value };
+        let left = if param_modes[0] == 0 {
+            memory[left_operand_value as usize]
+        } else {
+            left_operand_value
+        };
+        let right = if param_modes[1] == 0 {
+            memory[right_operand_value as usize]
+        } else {
+            right_operand_value
+        };
 
         (output_location, left, right)
     }
 
-    pub fn get_stuff_for_basic_unary_op(memory: &ProgramMemory, pointer: &usize) -> (usize) {
-        let output_location = memory[pointer + 1] as usize;
-        (output_location)
+    pub fn get_stuff_for_basic_unary_op(
+        memory: &ProgramMemory,
+        pointer: &usize,
+        param_modes: &ParamModes,
+    ) -> (i32) {
+        let output_location = memory[pointer + 1];
+        let output = if param_modes[0] == 0 {
+            memory[output_location as usize]
+        } else {
+            output_location
+        };
+        (output)
     }
 }
 
