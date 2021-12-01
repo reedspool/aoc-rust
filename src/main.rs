@@ -2,6 +2,7 @@ mod advent_utilities;
 mod intcode_interpreter;
 mod aoc_2015;
 mod aoc_2019;
+mod aoc_2021;
 
 fn main() {
     // Everything in this application is driven by tests.
