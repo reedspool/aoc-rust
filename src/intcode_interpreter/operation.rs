@@ -15,6 +15,10 @@ pub enum OpCode {
     Multiply = 2,
     ReadInput = 3,
     WriteOutput = 4,
+    JumpIfTrue = 5,
+    JumpIfFalse = 6,
+    LessThan = 7,
+    Equals = 8,
     Halt = 99,
 }
 
@@ -25,6 +29,10 @@ impl OpCode {
             2 => OpCode::Multiply,
             3 => OpCode::ReadInput,
             4 => OpCode::WriteOutput,
+            5 => OpCode::JumpIfTrue,
+            6 => OpCode::JumpIfFalse,
+            7 => OpCode::LessThan,
+            8 => OpCode::Equals,
             99 => OpCode::Halt,
             unknown => panic!("Unknown opcode: {}", unknown),
         }
@@ -69,7 +77,7 @@ impl Operation {
             OpCode::ReadInput => {
                 let (output_location) = Operation::get_stuff_for_basic_unary_op(
                     &program.memory,
-                    &program.instruction_pointer,
+                    program.instruction_pointer,
                     &self.param_modes,
                 );
 
@@ -80,12 +88,22 @@ impl Operation {
             OpCode::WriteOutput => {
                 let (output) = Operation::get_stuff_for_basic_unary_op(
                     &program.memory,
-                    &program.instruction_pointer,
+                    program.instruction_pointer,
                     &self.param_modes,
                 );
 
                 program.push_output(output);
             }
+            /*
+            Hmmm. My normal bifurcaction of concerns doesn't work here. Jump's need to change the instruction pointer in both cases, but the two cases are wildly different. I guess I'll have to do both here and do a noop in the move pointer fn below
+            */
+            OpCode::JumpIfTrue => {
+
+                // program.instruction_pointer = ???
+            },
+            OpCode::JumpIfFalse => {},
+            OpCode::LessThan => todo!(),
+            OpCode::Equals => todo!(),
             OpCode::Halt => program.halt(),
         }
     }
@@ -97,6 +115,11 @@ impl Operation {
             OpCode::ReadInput => program.instruction_pointer + 2,
             OpCode::WriteOutput => program.instruction_pointer + 2,
             OpCode::Halt => program.instruction_pointer,
+            // Jumps are handled during their execution
+            OpCode::JumpIfTrue => 0,
+            OpCode::JumpIfFalse => 0,
+            OpCode::LessThan => todo!(),
+            OpCode::Equals => todo!(),
         };
     }
 
@@ -125,16 +148,22 @@ impl Operation {
 
     pub fn get_stuff_for_basic_unary_op(
         memory: &ProgramMemory,
-        pointer: &usize,
+        pointer: usize,
         param_modes: &ParamModes,
     ) -> (i32) {
-        let output_location = memory[pointer + 1];
-        let output = if param_modes[0] == 0 {
-            memory[output_location as usize]
+            Operation::get_value_by_mode(memory, memory[pointer + 1usize], param_modes[0])
+    }
+
+    pub fn get_value_by_mode(
+        memory: &ProgramMemory,
+        value: i32,
+        param_mode: i32) -> i32 {
+
+        if param_mode == 0 {
+            memory[value as usize]
         } else {
-            output_location
-        };
-        (output)
+            value
+        }
     }
 }
 
