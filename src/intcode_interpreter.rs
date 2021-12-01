@@ -1,9 +1,11 @@
 use crate::intcode_interpreter::operation::{OpCode, Operation};
+use wasm_bindgen::prelude::*;
 
 mod operation;
 
 pub type ProgramMemory = Vec<i32>;
 
+#[wasm_bindgen]
 #[derive(Clone,Debug)]
 pub struct Program {
     memory: ProgramMemory,
@@ -51,6 +53,11 @@ impl Program {
     pub fn output(&self) -> &Vec<i32> {
         &self.output
     }
+
+    pub fn memory(&self) -> &Vec<i32> {
+        &self.memory
+    }
+
     pub fn first_position(&self) -> i32 {
         self.memory[0]
     }
@@ -62,7 +69,6 @@ impl Program {
     pub fn set_verb(&mut self, input: i32) {
         self.memory[2] = input;
     }
-
 
     pub fn set_input(&mut self, input: i32) {
         self.input = input;

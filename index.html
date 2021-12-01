@@ -6,10 +6,10 @@
   </head>
   <body>
     <script type="module">
-      import init, {greet} from "./pkg/rust_advent_of_code.js";
+      import init, {run_intcode} from "./pkg/rust_advent_of_code.js";
       init()
         .then(() => {
-          greet("WebAssembly")
+          console.log(run_intcode("1,0,0,0,99").memory());
         });
       </script>
   </body>
