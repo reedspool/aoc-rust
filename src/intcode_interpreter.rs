@@ -133,44 +133,44 @@ mod tests {
         assert_eq!(Program::first_position_for("1,1,1,4,99,5,6,0,99"), 30);
     }
 
-    #[test]
-    fn test_is_eq_position_mode() {
-      let mut program = Program::parse("3,9,8,9,10,9,4,9,99,-1,8");
-        program.set_input(8);
-        let result_program = program.run();
-        let output = result_program.output()[0];
+    // #[test]
+    // fn test_is_eq_position_mode() {
+    //   let mut program = Program::parse("3,9,8,9,10,9,4,9,99,-1,8");
+    //     program.set_input(8);
+    //     let result_program = program.run();
+    //     let output = result_program.output()[0];
 
-        assert_eq!(output, 1);
-    }
+    //     assert_eq!(output, 1);
+    // }
 
 
-    #[test]
-    fn test_is_not_eq_position_mode() {
-      let mut program = Program::parse("3,9,8,9,10,9,4,9,99,-1,8");
-        program.set_input(8);
-        let result_program = program.run();
-        let output = result_program.output()[0];
+    // #[test]
+    // fn test_is_not_eq_position_mode() {
+    //   let mut program = Program::parse("3,9,8,9,10,9,4,9,99,-1,8");
+    //     program.set_input(8);
+    //     let result_program = program.run();
+    //     let output = result_program.output()[0];
 
-        assert_eq!(output, 0);
-    }
+    //     assert_eq!(output, 0);
+    // }
 
-    #[test]
-    fn test_is_less_than_position_mode() {
-      let mut program = Program::parse("3,9,7,9,10,9,4,9,99,-1,8");
-        program.set_input(8);
-        let result_program = program.run();
-        let output = result_program.output()[0];
+    // #[test]
+    // fn test_is_less_than_position_mode() {
+    //   let mut program = Program::parse("3,9,7,9,10,9,4,9,99,-1,8");
+    //     program.set_input(8);
+    //     let result_program = program.run();
+    //     let output = result_program.output()[0];
 
-        assert_eq!(output, 0);
-    }
+    //     assert_eq!(output, 0);
+    // }
 
-    #[test]
-    fn test_is_not_less_than_position_mode() {
-      let mut program = Program::parse("3,9,7,9,10,9,4,9,99,-1,8");
-        program.set_input(7);
-        let result_program = program.run();
-        let output = result_program.output()[0];
+    // #[test]
+    // fn test_is_not_less_than_position_mode() {
+    //   let mut program = Program::parse("3,9,7,9,10,9,4,9,99,-1,8");
+    //     program.set_input(7);
+    //     let result_program = program.run();
+    //     let output = result_program.output()[0];
 
-        assert_eq!(output, 1);
-    }
+    //     assert_eq!(output, 1);
+    // }
 }

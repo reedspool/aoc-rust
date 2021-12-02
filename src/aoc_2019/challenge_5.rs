@@ -29,12 +29,12 @@ mod tests {
             &result, &[0, 0, 0, 0, 0, 0, 0, 0, 0, 16574641]);
     }
 
-    #[test]
-    fn test_part_2() {
-        let input = read_input("aoc_2019_5_1_input");
-        let result = part_2(&input);
-        println!("{:?}", result);
-        assert_array_eq(
-            &result, &[0, 0, 0, 0, 0, 0, 0, 0, 0, 16574641]);
-    }
+    // #[test]
+    // fn test_part_2() {
+    //     let input = read_input("aoc_2019_5_1_input");
+    //     let result = part_2(&input);
+    //     println!("{:?}", result);
+    //     assert_array_eq(
+    //         &result, &[0, 0, 0, 0, 0, 0, 0, 0, 0, 16574641]);
+    // }
 }
