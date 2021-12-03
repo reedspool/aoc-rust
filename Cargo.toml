@@ -4,7 +4,7 @@
 name = "rust-advent-of-code"
 version = "0.1.0"
 authors = ["Reed Spool <yesoperator@gmail.com>"]
-description = "A sample project with wasm-pack"
+description = "Advent of Code"
 license = "MIT/Apache-2.0"
 repository = "https://github.com/reedspool/rust-aoc"
 edition = "2021"
