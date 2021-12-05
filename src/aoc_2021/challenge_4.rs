@@ -183,9 +183,10 @@ pub fn part_2(input: String) -> (i32, i32) {
     }
 
     let mut boards_left = boards.len();
-    let mut last_won;
+    let mut last_win = -1;
 
     for num in numbers {
+        final_number = num;
         // for board in boards {
         //     for row in board.rows {
         //         for (value, _flipped) in row {
@@ -215,10 +216,6 @@ pub fn part_2(input: String) -> (i32, i32) {
                 }
             }
 
-            if winning > -1 {
-                break;
-            }
-
             for col in 0..5 {
                 let mut did_win = true;
                 for row in 0..5 {
@@ -234,21 +231,30 @@ pub fn part_2(input: String) -> (i32, i32) {
             }
 
             if winning > -1 {
-                break;
+                if !boards[winning as usize].did_win {
+                    println!("Hey! Board {} won finally!", winning);
+                    boards_left -= 1;
+                last_win = winning;
+                };
+
+                boards[winning as usize].did_win = true;
+
+                winning = -1;
             }
         }
 
-        if winning > -1 {
-            final_number = num;
-            last_won = winning;
-            winning = -1;
+        if boards_left == 0 {
+            println!("Last won: {}", last_win);
+            break;
         }
+
+        winning = -1;
     }
 
     // Calculate umarked_sum
     for col in 0..5 {
         for row in 0..5 {
-            let (num, flipped) = boards[last_won as usize].rows[row][col];
+            let (num, flipped) = boards[last_win as usize].rows[row][col];
             if flipped == false {
                 unmarked_sum += num;
             }
@@ -286,8 +292,9 @@ mod tests {
         println!("{} * {} = {}", unmarked_sum, final_number, result);
 
         assert!(result < 58838);
+        assert!(result > 2714);
         println!("My answer is {}", result);
-        assert_eq!(result, 0);
+        assert_eq!(result, 6256);
     }
 
     #[test]
