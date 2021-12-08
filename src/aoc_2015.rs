@@ -1,1 +1,1 @@
-mod challenge_1;
+mod day_1;
