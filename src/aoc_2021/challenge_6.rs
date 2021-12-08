@@ -3,9 +3,9 @@ pub fn part_1(input: String, days: u64) -> u64 {
     let mut fish : Vec<u64> = input.trim().split(",").map(|f| f.parse().unwrap()).collect();
 
     for day in 0..days {
-        let reproducing = fish.iter().filter(|f| **f == 0).count();
+        let reproducing = fish.iter().filter(|&&f| f == 0).count();
 
-        fish = fish.iter().map(|f| if *f == 0 { 7 } else { *f }).collect();
+        fish = fish.iter().map(|&f| if f == 0 { 7 } else { f }).collect();
         fish = fish.iter().map(|f| f - 1).collect();
 
         for newborn in 0..reproducing {
