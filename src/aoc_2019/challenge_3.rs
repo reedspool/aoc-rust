@@ -214,7 +214,7 @@ U98,R91,D20,R16,D67,R40,U7,R15,U6,R7"
             135
         );
 
-        let input = read_input("aoc_2019_3_1_input");
+        let input = read_input("aoc_2019_3_1");
 
         let result = part_1(input.clone());
         assert_eq!(result, 1195);
@@ -255,7 +255,7 @@ U98,R91,D20,R16,D67,R40,U7,R15,U6,R7"
             410
         );
 
-        let input = read_input("aoc_2019_3_1_input");
+        let input = read_input("aoc_2019_3_1");
 
         let result = part_2(input.clone());
         assert_eq!(result, 91518);

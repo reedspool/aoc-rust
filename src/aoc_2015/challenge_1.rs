@@ -36,7 +36,7 @@ mod tests {
 
     #[test]
     fn test_part_1() {
-        let input = read_input("aoc_2015_1_1_input");
+        let input = read_input("aoc_2015_1_1");
 
         let result = super::part_1(input.clone());
         println!("Santa ends up on floor #{}", result);
@@ -45,7 +45,7 @@ mod tests {
 
     #[test]
     fn test_part_2() {
-        let input = read_input("aoc_2015_1_1_input");
+        let input = read_input("aoc_2015_1_1");
         let result = super::part_2(input.clone());
         println!("Santa goes into the basement on floor #{}", result);
         assert_eq!(result, 1797);

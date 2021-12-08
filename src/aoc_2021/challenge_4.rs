@@ -271,7 +271,7 @@ mod tests {
 
     #[test]
     fn test_part_1() {
-        let input = read_input("aoc_2021_4_1_input");
+        let input = read_input("aoc_2021_4_1");
 
         let (unmarked_sum, final_number) = part_1(input.clone());
         let result = unmarked_sum * final_number;
@@ -284,7 +284,7 @@ mod tests {
 
     #[test]
     fn test_part_2() {
-        let input = read_input("aoc_2021_4_1_input");
+        let input = read_input("aoc_2021_4_1");
 
         let (unmarked_sum, final_number) = part_2(input.clone());
         let result = unmarked_sum * final_number;

@@ -73,7 +73,7 @@ mod tests {
 
     #[test]
     fn test_part_1() {
-        let input = read_input("aoc_2021_7_1_input");
+        let input = read_input("aoc_2021_7_1");
 
         let result = part_1(input.clone());
 
@@ -83,7 +83,7 @@ mod tests {
 
     #[test]
     fn test_part_2() {
-        let input = read_input("aoc_2021_7_1_input");
+        let input = read_input("aoc_2021_7_1");
 
         let result = part_2(input.clone());
 

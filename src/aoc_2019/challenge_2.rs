@@ -41,7 +41,7 @@ mod tests {
 
     #[test]
     fn test_part_1() {
-        let input = read_input("aoc_2019_2_1_input");
+        let input = read_input("aoc_2019_2_1");
 
         let result = part_1(&input);
         assert_eq!(result, 6327510);
@@ -49,7 +49,7 @@ mod tests {
     }
 
     fn test_part_2() {
-        let input = read_input("aoc_2019_2_1_input");
+        let input = read_input("aoc_2019_2_1");
 
         assert_eq!(part_2(&input, 6327510), 1202);
         let result = part_2(&input, 19690720);

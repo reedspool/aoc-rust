@@ -275,7 +275,7 @@ mod tests {
 
     #[test]
     fn test_part_1() {
-        let input = read_input("aoc_2021_5_1_input");
+        let input = read_input("aoc_2021_5_1");
 
         let result = part_1(input.clone());
 
@@ -285,7 +285,7 @@ mod tests {
 
     #[test]
     fn test_part_2() {
-        let input = read_input("aoc_2021_5_1_input");
+        let input = read_input("aoc_2021_5_1");
 
         let result = part_2(input.clone());
 
